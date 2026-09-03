@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: super-web-project02
+    #数据库连接信息
+  datasource:
+    url: jdbc:mysql://localhost:3306/super01
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+#Mybatis相关配置
+mybatis:
+  mapper-locations: classpath:org/king/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启驼峰命名开关
+    map-underscore-to-camel-case: true
+
+#阿里云 OSS 配置（改成你自己的地域和 Bucket）
+aliyun:
+  oss:
+    region: cn-beijing
+    bucket: java-super

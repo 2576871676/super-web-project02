@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/super-web-management/src/main/java/org/king/mapper/EmpMapper.java" value="ab2eceda-2509-448b-ac33-5fc3f41a9a62" />
+    <file url="file://$PROJECT_DIR$/super-web-management/src/main/resources/org/king/EmpMapper.xml" value="ab2eceda-2509-448b-ac33-5fc3f41a9a62" />
+  </component>
+</project>
