@@ -87,6 +87,10 @@ public class EmpServiceImpl implements EmpService {
     public void update(Emp emp) {
         //1 修改员工基本信息
         emp.setUpdateTime(LocalDateTime.now());
+        int count=empMapper.findPhone(emp.getPhone());
+        if(count!=0){
+            throw new RuntimeException("手机号被使用---");
+        }
         empMapper.update(emp);
         //2 修改员工工作经历信息：先删除旧的，再插入新的
         empExprMapper.deleteByEmpId(emp.getId());
