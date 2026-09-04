@@ -49,8 +49,14 @@ public interface EmpMapper {
     /*
     * 统计各个职位员工人数
     * */
+    @MapKey("pos")
     List<Map<String,Object>> countEmpJobData();
 
     @Select("select count(*) from emp where phone=#{phone}")
     int findPhone(String phone);
+    /*
+    * 统计职工性别人数
+    * */
+    @MapKey("name")
+    List<Map<String,Object>> countEmpGenderData();
 }
