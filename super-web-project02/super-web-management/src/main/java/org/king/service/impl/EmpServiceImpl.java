@@ -2,6 +2,7 @@ package org.king.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import lombok.extern.slf4j.Slf4j;
 import org.king.mapper.EmpExprMapper;
 import org.king.mapper.EmpMapper;
 import org.king.pojo.*;
@@ -15,6 +16,7 @@ import org.springframework.util.CollectionUtils;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @Service
 public class EmpServiceImpl implements EmpService {
 
@@ -24,6 +26,19 @@ public class EmpServiceImpl implements EmpService {
     private EmpExprMapper empExprMapper;
     @Autowired
     private EmpLogService empLogService;
+
+    @Override
+    public LoginInfo login(Emp emp) {
+        //1 调用mapper接口，根据员工用户名和密码查询员工信息
+        Emp e = empMapper.selectByUsernameAndPassword(emp);
+        //2 判断是否存在： 存在，返回登录信息；不存在，返回null
+        if (e!=null){
+            log.info("登录成功：{}", e);
+            return new LoginInfo(e.getId(),e.getUsername(),e.getName(),"");
+        }
+        //3 登录失败
+        return null;
+    }
 
     @Override
     public PageResult<Emp> page(EmpQueryParam empQueryParam) {

@@ -2,6 +2,7 @@ package org.king.service;
 
 import org.king.pojo.Emp;
 import org.king.pojo.EmpQueryParam;
+import org.king.pojo.LoginInfo;
 import org.king.pojo.PageResult;
 
 public interface EmpService {
@@ -26,4 +27,8 @@ public interface EmpService {
 
     void delete(Integer ids);
 
+    /*
+    * 员工登录方法
+    * */
+    LoginInfo login(Emp emp);
 }
