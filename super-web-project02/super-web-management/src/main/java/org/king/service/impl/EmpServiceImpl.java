@@ -8,13 +8,16 @@ import org.king.mapper.EmpMapper;
 import org.king.pojo.*;
 import org.king.service.EmpLogService;
 import org.king.service.EmpService;
+import org.king.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -34,7 +37,14 @@ public class EmpServiceImpl implements EmpService {
         //2 判断是否存在： 存在，返回登录信息；不存在，返回null
         if (e!=null){
             log.info("登录成功：{}", e);
-            return new LoginInfo(e.getId(),e.getUsername(),e.getName(),"");
+
+            //生产Jwt令牌
+            Map<String,Object> claims = new HashMap<>();
+            claims.put("id",e.getId());
+            claims.put("username",e.getUsername());
+            String Jwt = JwtUtils.generateJwt(claims);
+
+            return new LoginInfo(e.getId(),e.getUsername(),e.getName(),Jwt);
         }
         //3 登录失败
         return null;
